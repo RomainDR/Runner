@@ -1,0 +1,42 @@
+name: FreshAgencyRunner
+version: '${project.version}'
+main: fr.kenda.freshagency.FreshAgencyRunner
+api-version: '1.20'
+authors: [Kenda]
+load: POSTWORLD
+description: Plugin de mini-jeu pour l'agence FreshAgency
+commands:
+  back:
+    description: Permet de retourner en arrière de X blocs
+  backglitch:
+    description: Permet de retourner en arrière de X blocs avec un effet de glitch
+  tnt:
+    description: Fait spawn des tnt
+  roll:
+    description: permet de faire un evenement aléatoire
+  jump:
+    description: Permet de faire des doubles sauts
+  repair:
+    description: Commande admin
+  cobweb:
+    description: Permet de faire spawn des toiles d'araignée
+  debug:
+    description: Commande admin
+  sendtitle:
+    description: Send un title au joueur
+  win:
+    description: Peut augmenter ou diminuer un score
+  startlive:
+    description: Permet de se connecter à un compte tiktok
+  disconnectlive:
+    description: Permet de se deconnecter à un compte tiktok
+  reset:
+    description: Permet de reset le joueur
+  spawnmonster:
+    description: Permet de faire spawn un mob
+  fuse:
+    description: Permet de faire un effect de guardian
+  tppercent:
+    description: Permet de faire un tp
+  give:
+    description: Permet de faire give

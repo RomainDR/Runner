@@ -1,0 +1,312 @@
+#################################
+#         Author: Kenda          #
+#      Created: 19/08/2024       #
+#  Plugin: FreshAgency-Runner    #
+#           github: -            #
+#################################
+
+#prefix du plugin
+prefix: "&f[&bFreshAgency&f]"
+
+#Le nom du serveur
+#Doit etre le même que dans la config bungeecord
+server_name: "runner01"
+
+#Permission
+#Permission pour afficher le serveur
+server_permission: ""
+
+map_size: 1000
+
+#Depart en X de la course
+#Il permettra de faire le calcule avec le point d'arrivée
+x_coordinate_start: 0
+
+#La couche maximum ou le joueur peut tomber avant d'être reteleporter au spawn ou au checkpoint
+maximum_void_y: 50
+
+#Message afficher lors des mouvements du joueur
+#Cela affichera une action bar au joueur avec la distance qu'il a parcouru depuis le point de départ
+distance_message: "&6{distance}&f/&l1000"
+
+#Message afficher lorsque le joueur subira un /back
+double_message: "{back_message} || {distance_message}"
+dash_message: "&6Dash: {count_dash} &8|| {distance_message}"
+
+############################################################
+# +--------------------------------------------------------+ #
+#                      Section /Back                       #
+# +--------------------------------------------------------+ #
+############################################################
+back:
+  #Delay de l'animation de recule (téléportation)
+  delay_animation_back: 0.1
+  #Message de l'action bar
+  back_message: "&c{count}/{max_back}"
+
+back_glitch:
+  #Set la hauteur à laquelle le joueur sera pendant le back
+  height: 135
+  #La distance à laquelle l'effet peur produire
+  #Ce sera le décalage que le joueur aura pour crée cet effet de glitch sur l'axe Z
+  space_effect_z: 10
+  #Ce sera le décalage que le joueur aura pour crée cet effet de glitch sur l'axe X
+  space_effect_x: 2
+  #Ce sera le décalage que le joueur aura pour crée cet effet de glitch sur l'axe Y
+  space_effect_y: 5
+
+############################################################
+# +--------------------------------------------------------+ #
+#                       Section /tnt                       #
+# +--------------------------------------------------------+ #
+############################################################
+tnt:
+  #Distance en block de spawn des tnts depuis le joueur
+  distance: 5
+  #Maximum de tnt a faire spawn en une fois
+  max_tnt_spawn_one_time: 100
+  tnt_rain:
+    #Config de la region du spawn
+    #Cela va crée un carré sur une zone de X,Z, faisant spawn les tnts
+    #Distance en block en X sur le spawn des tnts
+    rangeX: 20
+    #Distance en block en Z sur le spawn des tnts
+    rangeZ: 20
+    #Hauteur de spawn des tnts
+    tnt_spawn_height: 10
+    #Nombre de tnt à faire spawn
+    number_to_spawn: 20
+    #Delai d'explosion
+    delay_explode: 3
+    #Delai entre chaque spawn de pluie
+    delay_between_rain: 3
+  tnt_ground:
+    #Config de la region du spawn
+    #Cela va crée un carré sur une zone de X,Z, faisant spawn les tnts
+    #Distance en block en X sur le spawn des tnts
+    rangeX: 10
+    #Distance en block en Z sur le spawn des tnts
+    rangeZ: 10
+    #Hauteur de spawn des tnts
+    tnt_spawn_height: 3
+    #Delai d'explosion
+    delay_explode: 3
+
+############################################################
+# +--------------------------------------------------------+ #
+#                      Section /roll                       #
+# +--------------------------------------------------------+ #
+############################################################
+roll:
+  #Temps avant la fermeture de l'inventaire
+  time_before_close: 5
+  #Nombres de rolls que l'inventaire fera
+  number_rolls: 20
+  #Temps entre chaque animation de rolls
+  time_between_rolls: 0.1
+  #Materiau pour le "décor" du roll
+  roll_decoration: BLACK_STAINED_GLASS_PANE
+  #Son du roll
+  #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+  sound_roll: ENTITY_ARROW_HIT_PLAYER
+  #Son a la fin du roll
+  sound_win: ENTITY_ARROW_HIT_PLAYER
+  events:
+    teleport:
+      title: "Retour à la base"
+      percentage: 90
+      material: DIAMOND_BLOCK
+      commands:
+        - "back 150 %player%"
+    enderpearl:
+      title: "&cUn don d'ender pearl ?!"
+      percentage: 50
+      material: ENDER_PEARL
+      commands:
+        - "give %player% minecraft:ender_pearl 5"
+        - "back 50 %player%"
+  wins:
+    +1:
+      title: "+1 Win"
+      percentage: 90
+      material: DIAMOND_BLOCK
+      commands: [ ]
+
+############################################################
+# +--------------------------------------------------------+ #
+#                      Section /jump                       #
+# +--------------------------------------------------------+ #
+############################################################
+double_jump:
+  #Permet de set la force du double saut
+  double_jump_force: 1.5
+
+############################################################
+# +--------------------------------------------------------+ #
+#                           Map                            #
+# +--------------------------------------------------------+ #
+############################################################
+map:
+  map_name: "runner_%number%"
+  #Nombre de map à générer
+  #Ce sera le nombre maximum de partie par serveur
+  number_map: 5
+  #Permets de définir la taille de la carte
+  #Afin de pouvoir la restaurer
+  #Mettre deux coordonnées opposées afin de créer un carré virtuel autour
+  pos1: "-80; 75; 80"
+  pos2: "1065; 200; -100"
+  #Spawn de la map (invincible)
+  spawn:
+    pos1: "-59; 85;14"
+    pos2: "11; 110;-12"
+  #Fin de la map (invincible)
+  end:
+    pos1: "965;103;-0.5"
+    pos2: "1040; 150;26"
+
+  #Point de téléportation à la fin du timer de fin
+  end_teleport: "1004; 107; 10"
+
+  #portail de la fin de la map
+  area_win_pos1: "1012; 106; 8"
+  area_win_pos2: "1016; 104; 12"
+
+  min_z: -65
+  max_z: 65
+
+  #Animation
+  #Vitesse d'animation de reparation de bloc (en secondes)
+  #0 secondes = instantané
+  repair_speed:
+    #Vitesse de blocs par secondes si le pourcentage est supérieur ou égal à 75%
+    75: 10000
+    #Vitesse de blocs par secondes si le pourcentage est supérieur ou égal à 50%
+    50: 2500
+    #Vitesse de blocs par secondes si le pourcentage est supérieur ou égal à 25%
+    25: 625
+    #Vitesse de blocs par secondes si le pourcentage est inférieur à 25%
+    default: 250
+############################################################
+# +--------------------------------------------------------+ #
+#                           Checkpoint                     #
+# +--------------------------------------------------------+ #
+############################################################
+checkpoint:
+  #La coordonnées en x pour capter un checkpoint
+  x: 964
+  #La coordonnées en y ou le joueur sera téléporter
+  y: 105
+  #La coordonnées en z ou le joueur sera téléporter
+  z: 10
+
+############################################################
+# +--------------------------------------------------------+ #
+#                         Bossbar                          #
+# +--------------------------------------------------------+ #
+############################################################
+cobweb:
+  #Taille du cube autour du joueur
+  radius: 3
+
+############################################################
+# +--------------------------------------------------------+ #
+#                         Bossbar                          #
+# +--------------------------------------------------------+ #
+############################################################
+bossbar_info:
+  agency:
+    #Interval de changements en secondes
+    interval_change: 2
+    messages:
+    - "&bFresh Agency"
+    - "&3Fresh Agency"
+    - "&9Fresh Agency"
+    - "&1Fresh Agency"
+
+############################################################
+# +--------------------------------------------------------+ #
+#                        Win Remove                        #
+# +--------------------------------------------------------+ #
+############################################################
+wave:
+  #Démarrage de la vague d'éclair lors d'une perte de win
+  wave_lightning: 15
+  #Delai entre les vagues d'éclairs
+  wave_delay: 0.5
+  #Mettre une chance sur X pour crée une explosion à l'impact
+  chance_explosion: 4
+  #Force de l'explosion
+  explosion_force: 1.0
+############################################################
+# +--------------------------------------------------------+ #
+#                       Top donateur                       #
+# +--------------------------------------------------------+ #
+############################################################
+#Message de la bossbar pour le top donateur
+top_donator_message: "{donator} ({total_diamond})"
+
+############################################################
+# +--------------------------------------------------------+ #
+#                        Inventory                         #
+# +--------------------------------------------------------+ #
+############################################################
+# Inventaire de jeu du joueur
+# Les matériaux peuvent être trouvés sur ce site
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+inventory_player:
+  - "SAND, 32"
+  - "DIRT, 32"
+############################################################
+# +--------------------------------------------------------+ #
+#                      SPAWN MONSTER                       #
+# +--------------------------------------------------------+ #
+############################################################
+#Entité à faire spawn pour le petit cadeau
+mount:
+  type: PIG
+  #ajouter une porté devant le joueur
+  location_forward: 5
+  has_passenger: true
+#le mob au dessus de la monture
+passenger:
+  type: SKELETON
+#Plus cette valeur est haute, plus les dégats seront faibles. (dégats / 2 dans cet exemple)
+damage_reduce: 2
+
+
+############################################################
+# +--------------------------------------------------------+ #
+#                         END GAME                         #
+# +--------------------------------------------------------+ #
+############################################################
+#Plaque de pression à activé pour démarré le chrono de fin
+pressure_plate: HEAVY_WEIGHTED_PRESSURE_PLATE
+
+#Feu d'artifice
+firework:
+  power: 1
+  #RGB code de couleur
+  #https://www.rapidtables.com/web/color/RGB_Color.html
+  colors:
+    - "255; 0; 0"
+    - "0; 255; 0"
+  fade:
+    active: true
+    color: "255; 0; 0"
+  type: BALL_LARGE
+  trail: false
+  flicker: true
+
+############################################################
+# +--------------------------------------------------------+ #
+#                         WEB API                          #
+# +--------------------------------------------------------+ #
+############################################################
+
+#Port de connexion pour l'api web
+#Permet de se connecter à http://localhost:PORT/XXXX/XXXX
+api_port: 1542
+
+#Maximum de win à afficher (statique)
+max_win: 5
