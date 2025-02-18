@@ -7,5 +7,3 @@ The plugin uses Spark technology to create a web server.
 The plugin also uses the tiktok API to link live events to the game.
 
 This project was freelanced via Fiverr, and the owner allows open-source.
-
-From a personal github
