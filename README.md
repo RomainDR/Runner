@@ -1,9 +1,30 @@
+# TikTok-Integrated Minecraft Game Mode
 
-### Fresh Agency Runner
+Welcome to the repository for a unique Minecraft game mode that integrates with TikTok's API to create an interactive and engaging experience for both players and viewers!
 
-This is a minecraft plugin for the Fresh Agency on Tiktok. The idea is to run on a straight map, while viewers can send traps to players.
+## Project Overview
 
-The plugin uses Spark technology to create a web server. 
-The plugin also uses the tiktok API to link live events to the game.
+This project introduces a custom game mode for Minecraft where the primary objective is to cross the finish line a set number of times. The twist? It's integrated with TikTok's API, allowing viewers to send gifts that trigger various in-game actions. These actions can include sending TNT, destroying parts of the map, or even setting the player back, making the gameplay dynamic and unpredictable.
 
-This project was freelanced via Fiverr, and the owner allows open-source.
+### Key Features:
+- **Interactive Gameplay:** Viewers can influence the game in real-time by sending gifts through TikTok.
+- **Dynamic Challenges:** Each gift can alter the game environment, providing a fresh challenge with every playthrough.
+- **Engagement:** Enhances viewer interaction by allowing them to directly impact the game's outcome.
+
+## Installation
+
+Please note, this project is not available for public download. It serves as a demonstration of the system's capabilities. If you are interested in accessing the project or have any inquiries, please feel free to contact me or create an issue [here](https://github.com/RomainDR/Runner/issues).
+
+## Usage Documentation
+
+For detailed examples and instructions on how this game mode operates within Minecraft, please refer to our [documentation](https://freshagency.gitbook.io/freshagency-runner/installation).
+
+## Contributing
+
+As this project is primarily for demonstration purposes, contributions are not currently being accepted. However, feedback and suggestions are always welcome. Please feel free to open an issue to discuss any ideas or improvements.
+
+## Contact
+
+For further information or inquiries, please contact me directly through GitHub or via the issue tracker.
+
+---
